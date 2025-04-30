@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warm Space Booking</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="space.css">
+</head>
+<body>
+  <header class="header">
+    <img src="image/logo.png" alt="Logo" class="logo">
+    <div class="menu-container">
+      <div class="menu">Menu</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="welcome-text">
+      Welcome to the<br>
+      <strong>Warm Space!</strong>
+      <img src="image/house.png" alt="House Icon" class="house-icon">
+    </h1>
+
+    <section class="booking-card">
+      <h2>Book a warm space</h2>
+      <div class="map">
+        <img src="image/map.png" alt="Map">
+      </div>
+
+      <div class="tags">
+        <span class="tag">Hot Drinks</span>
+        <span class="tag">Food Available</span>
+      </div>
+
+      <div class="time-slot">
+        <h3>Time slot</h3>
+        <div class="buttons">
+          <button class="slot">10:30</button>
+          <button class="slot">12:00</button>
+          <button class="slot">14:30</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="navigation">
+      <a href="#" class="back">Back</a>
+      <button class="continue">Continue</button>
+    </div>
+  </main>
+
+  <script>
+  // Time slot selection
+  const slots = document.querySelectorAll('.slot');
+  let selectedSlot = null;
+
+  slots.forEach(slot => {
+    slot.addEventListener('click', () => {
+      slots.forEach(s => s.classList.remove('selected'));
+      slot.classList.add('selected');
+      selectedSlot = slot.textContent;
+    });
+  });
+
+  // Continue 버튼 핸들러
+  document.querySelector('.continue').addEventListener('click', () => {
+    if(selectedSlot) {
+      window.location.href = `confirmation.html?time=${selectedSlot}`;
+    } else {
+      alert('Please select a time slot');
+    }
+  });
+
+  // Back 버튼 핸들러 (예시: index.html로 이동)
+  document.querySelector('.back').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = 'index.html';
+  });
+  </script>
+</body>
+</html>

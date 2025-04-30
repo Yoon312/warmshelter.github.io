@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Workshop Booking</title>
+  <link rel="stylesheet" href="workshop.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <img src="image/logo.png" alt="Logo" class="logo">
+      <div class="menu-container">
+        <div class="menu">Menu</div>
+      </div>
+    </header>
+
+    <h1 class="welcome-text">
+      Welcome to the<br>
+      Winter survival Workshop!
+    </h1>
+
+    <div class="card">
+      <h2>Book a slot</h2>
+
+      <div class="calendar">
+        <div class="month-nav">
+          <span class="nav-arrow" id="prev-month">&lt;</span> 
+          <span class="month-name" id="current-month">April</span> 
+          <span class="nav-arrow" id="next-month">&gt;</span>
+        </div>
+        <div class="dates" id="calendar-dates">
+          <!-- JS will generate dates -->
+        </div>
+      </div>
+
+      <h2>Time slot</h2>
+      <div class="times" id="time-slots">
+        <button class="time-btn">10:30</button>
+        <button class="time-btn">12:00</button>
+        <button class="time-btn">14:30</button>
+      </div>
+    </div>
+
+    <div class="bottom-buttons">
+      <a href="index.html" class="back-link">Back</a>
+      <button class="continue-btn">Continue</button>
+    </div>
+  </div>
+
+  <script>
+    // Month navigation
+    const months = ["January", "February", "March", "April", "May", "June", 
+                   "July", "August", "September", "October", "November", "December"];
+    let currentMonth = new Date().getMonth();
+    const monthDisplay = document.getElementById("current-month");
+    const prevBtn = document.getElementById("prev-month");
+    const nextBtn = document.getElementById("next-month");
+    
+    function updateCalendar() {
+      monthDisplay.textContent = months[currentMonth];
+      generateCalendarDates();
+    }
+    
+    function generateCalendarDates() {
+      const datesContainer = document.getElementById("calendar-dates");
+      datesContainer.innerHTML = '';
+      
+      // Get days in month (simplified - assumes 28 days for all months)
+      const daysInMonth = 28;
+      const today = new Date().getDate();
+      const currentMonthNow = new Date().getMonth();
+      
+      for (let i = 1; i <= daysInMonth; i++) {
+        const btn = document.createElement("button");
+        btn.className = "date-btn";
+        btn.textContent = i;
+        
+        // Highlight today only if viewing current month
+        if (i === today && currentMonth === currentMonthNow) {
+          btn.classList.add("selected");
+        }
+        
+        btn.onclick = () => {
+          document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('selected'));
+          btn.classList.add("selected");
+        };
+        datesContainer.appendChild(btn);
+      }
+    }
+    
+    prevBtn.addEventListener('click', () => {
+      currentMonth = (currentMonth - 1 + 12) % 12;
+      updateCalendar();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      currentMonth = (currentMonth + 1) % 12;
+      updateCalendar();
+    });
+    
+    // Initialize calendar
+    updateCalendar();
+
+    // Time selection
+    const timeBtns = document.querySelectorAll('.time-btn');
+    timeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        timeBtns.forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+    });
+      // ... (기존 달력, 시간 선택 코드 생략) ...
+
+  // Continue 버튼 클릭 시 Confirmation 페이지로 이동
+  document.querySelector('.continue-btn').addEventListener('click', function() {
+    const selectedDate = document.querySelector('.date-btn.selected');
+    const selectedTime = document.querySelector('.time-btn.selected');
+
+    // 날짜와 시간이 선택되었는지 확인
+    if (!selectedDate || !selectedTime) {
+      alert('Please select both a date and time slot.');
+      return;
+    }
+
+    // 선택된 날짜 (예: "April 15")
+    const month = document.getElementById('current-month').textContent;
+    const date = selectedDate.textContent;
+    
+    // 선택된 시간 (예: "10:30")
+    const time = selectedTime.textContent;
+
+    // Confirmation 페이지로 이동 + 선택한 날짜/시간을 URL 파라미터로 전달
+    window.location.href = `confirmation.html?date=${month} ${date}&time=${time}`;
+  });
+  </script>
+</body>
+</html>

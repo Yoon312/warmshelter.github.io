@@ -1,0 +1,220 @@
+/* Base Reset & Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #f7f0ea;
+  color: #000;
+  padding: 15px 0;
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.container {
+  width: calc(100% - 20px);
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+/* Header - Updated to match chat.css */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+/* Header - 로고와 메뉴를 카드와 정렬 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  width: 100%;
+  max-width: 500px; /* 컨테이너와 동일한 최대 너비 */
+  padding: 0 10px; /* 컨테이너와 동일한 패딩 */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo {
+  height: 35px;
+  width: auto;
+}
+
+.menu-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menu {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Welcome Text - chat.css와 통일 */
+.welcome-text {
+  font-size: 24px;
+  line-height: 1.3;
+  margin-bottom: 25px;
+  text-align: left;
+  position: relative;
+}
+
+.house-icon {
+  width: 60px;
+  position: absolute;
+  left: calc(100% - 60px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Booking Card - 높이 10px 증가 (패딩 조정) */
+.booking-card {
+  background: #f2e2c8;
+  border-radius: 20px;
+  padding: 25px 20px; /* 상하 패딩 20px → 25px로 증가 */
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.booking-card h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.map img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+/* Tags */
+.tags {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tag {
+  background-color: #f7931e;
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: white;
+  font-size: 14px;
+}
+
+/* Time Slot */
+.time-slot h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.slot {
+  background: transparent;
+  border: 2px solid #000;
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slot.selected,
+.slot:hover {
+  background-color: #f7931e;
+  color: white;
+  border-color: #f7931e;
+}
+
+/* Navigation - chat.css의 bottom-buttons와 통일 */
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.back {
+  font-size: 16px;
+  text-decoration: underline;
+  color: black;
+  padding: 8px 0;
+}
+
+.continue {
+  padding: 10px 30px;
+  font-size: 16px;
+  background: transparent;
+  border: 2px solid black;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.continue:hover {
+  background-color: black;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .container {
+    width: calc(100% - 20px);
+    padding: 0 10px;
+  }
+
+  .welcome-text {
+    font-size: 22px;
+  }
+
+  .logo {
+    height: 30px; /* Updated from fixed width */
+  }
+
+  .craft-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .house-icon {
+    width: 50px;
+    left: calc(100% - 50px);
+  }
+
+  .booking-card {
+    padding: 20px 15px;
+    border-radius: 18px;
+  }
+
+  .slot {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .continue {
+    font-size: 15px;
+    padding: 8px 25px;
+  }
+}
