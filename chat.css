@@ -62,12 +62,20 @@ body {
   text-align: left;
   font-size: 24px;
   margin-bottom: 25px;
+  position: relative;
 }
 
 .welcome-text strong {
   margin-top: 5px;
 }
 
+.house-icon {
+  width: 40px;
+  position: absolute;
+  left: calc(100% - 60px);
+  top: 50%;
+  transform: translateY(-50%);
+}
 /* Voice Chat Card */
 .card {
   background: #f2e2c8;
