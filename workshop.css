@@ -58,7 +58,7 @@ body {
   position: relative;
 }
 
-.house-icon {
+.craft-icon {
   width: 60px;
   position: absolute;
   left: calc(100% - 60px);
